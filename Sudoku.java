@@ -41,6 +41,8 @@ public class Sudoku {
      * otherwise.
      */
     private boolean [][][] subgridHasVal;
+    private boolean [][] rowHasVal;
+    private boolean [][] colHasVal;
     
     /*** ADD YOUR ADDITIONAL FIELDS HERE. ***/
     
@@ -49,17 +51,18 @@ public class Sudoku {
      * has all empty cells.
      */
     public Sudoku() {
-        this.grid = new int[9][9];
-        this.valIsFixed = new boolean[9][9];     
+        this.grid = new int [9][9];
+        this.valIsFixed = new boolean [9][9];     
         
         /* 
          * Note that the third dimension of the following array is 10,
          * because we need to be able to use the possible values 
          * (1 through 9) as indices.
          */
-        this.subgridHasVal = new boolean[3][3][10];        
 
-        /*** INITIALIZE YOUR ADDITIONAL FIELDS HERE. ***/
+        this.subgridHasVal = new boolean [3][3][10];
+        this.rowHasVal = new boolean [9][10];
+        this.colHasVal = new boolean [9][10];
     }
     
     /*
@@ -68,9 +71,9 @@ public class Sudoku {
      */
     public void placeVal(int val, int row, int col) {
         this.grid[row][col] = val;
-        this.subgridHasVal[row/3][col/3][val] = true;
-        
-        /*** UPDATE YOUR ADDITIONAL FIELDS HERE. ***/
+        this.subgridHasVal[row / 3][col / 3][val] = true;
+        this.rowHasVal[row][val] = true;
+        this.colHasVal[col][val] = true;
     }
         
     /*s
@@ -79,9 +82,9 @@ public class Sudoku {
      */
     public void removeVal(int val, int row, int col) {
         this.grid[row][col] = 0;
-        this.subgridHasVal[row/3][col/3][val] = false;
-        
-        /*** UPDATE YOUR ADDITIONAL FIELDS HERE. ***/
+        this.subgridHasVal[row / 3][col / 3][val] = false;
+        this.rowHasVal[row][val] = false;
+        this.colHasVal[col][val] = false;
     }  
         
     /*
@@ -175,10 +178,10 @@ public class Sudoku {
             for (int val = 1; val <= 9; val++) {
                 if (isSafe(val, row, col)) {
                     placeVal(val, row, col);
-                    
+                    printGrid();
                     if (solveRB(n + 1)) 
                         return true;
-
+                    
                     removeVal(val, row, col);    
                 } 
             }
@@ -194,42 +197,26 @@ public class Sudoku {
      */
     public boolean solve() { 
         boolean foundSol = this.solveRB(0);
-        // boolean foundSol = this.solveSudoku();
         return foundSol;
     }
     
     public boolean isSafe(int val, int row, int col) {
-        return checkSubGrid(val, row, col) && checkRows(val, row, col) && checkCols(val, row, col) /* checkSubGrid(val, row, col) && grid[row][col] == 0 */;
+        return !checkRows(val, row) && !checkCols(val, col) && !checkSubGrid(val, row, col);
     }
 
-    public boolean checkRows(int val, int row, int col) {
-        for (int i = 0; i < grid.length; i++) {
-            if (grid[i][col] == val && i != row) 
-                return false;
-        }
-        return true;
+    public boolean checkRows(int val, int row) {
+        return rowHasVal[row][val];
     }
 
-    public boolean checkCols(int val, int row, int col) {
-        for (int i = 0; i < grid.length; i++) {
-            if (grid[row][i] == val && i != col) 
-                return false;
-        }
-        return true;
+    public boolean checkCols(int val, int col) {
+        return colHasVal[col][val];
     }
 
     public boolean checkSubGrid(int val, int row, int col) {
-        int subsectionRows = (row / 3) * 3;
-        int subsectionCols = (col / 3) * 3;
+        int subsectionRows = row / 3;
+        int subsectionCols = col / 3;
 
-        for (int i = subsectionRows; i < subsectionRows + 3; i++) {
-            for (int j = subsectionCols; j < subsectionCols + 3; j++) {
-                if (grid[i][j] == val && i != row && j != col) 
-                    return false;
-            }
-        }
-
-        return true;
+        return subgridHasVal[subsectionRows][subsectionCols][val];
     }
 
     public static void main(String[] args) {
@@ -260,6 +247,5 @@ public class Sudoku {
             System.out.println("Here is the current state of the puzzle:");
         }
         puzzle.printGrid();  
-        puzzle.solve();
     }    
 }

@@ -167,24 +167,24 @@ public class Sudoku {
 
         int row = n / grid.length;
         int col = n % grid.length;
+        
+        if (valIsFixed[row][col]) 
+            solveRB(n + 1);
 
-        if (!valIsFixed[row][col]) {
+        else {
             for (int val = 1; val <= 9; val++) {
                 if (isSafe(val, row, col)) {
                     placeVal(val, row, col);
-                    // printGrid();
+                    
                     if (solveRB(n + 1)) 
                         return true;
 
-                    removeVal(val, row, col);
-                        
+                    removeVal(val, row, col);    
                 } 
             }
             return false;
         }  
-        else {
-            solveRB(n + 1);
-        }
+        
         return false;
     } 
     

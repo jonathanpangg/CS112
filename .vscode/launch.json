@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Sudoku",
+            "request": "launch",
+            "mainClass": "Sudoku",
+            "projectName": "CS112_5934249f"
+        },
+        {
+            "type": "java",
             "name": "Launch ArrayMethods",
             "request": "launch",
             "mainClass": "ArrayMethods",

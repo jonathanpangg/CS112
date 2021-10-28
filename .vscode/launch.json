@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch GenerateSums",
+            "request": "launch",
+            "mainClass": "GenerateSums",
+            "projectName": "CS112_5934249f"
+        },
+        {
+            "type": "java",
             "name": "Launch Sudoku",
             "request": "launch",
             "mainClass": "Sudoku",

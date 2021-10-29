@@ -172,13 +172,13 @@ public class Sudoku {
         int col = n % grid.length;
         
         if (valIsFixed[row][col]) 
-            solveRB(n + 1);
+            return solveRB(n + 1);
 
         else {
             for (int val = 1; val <= 9; val++) {
                 if (isSafe(val, row, col)) {
                     placeVal(val, row, col);
-                    printGrid();
+                    // printGrid();
                     if (solveRB(n + 1)) 
                         return true;
                     
@@ -188,7 +188,6 @@ public class Sudoku {
             return false;
         }  
         
-        return false;
     } 
     
     /*

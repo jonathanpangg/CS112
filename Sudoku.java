@@ -6,7 +6,7 @@
  *
  * Computer Science 112, Boston University
  *
- * your name: 
+ * your name: Jonathan Pang
  *
  */
 
@@ -199,18 +199,22 @@ public class Sudoku {
         return foundSol;
     }
     
+    // checks if a move is safe
     public boolean isSafe(int val, int row, int col) {
         return !checkRows(val, row) && !checkCols(val, col) && !checkSubGrid(val, row, col);
     }
 
+    // checks the rows
     public boolean checkRows(int val, int row) {
         return rowHasVal[row][val];
     }
 
+    // cheks the cols
     public boolean checkCols(int val, int col) {
         return colHasVal[col][val];
     }
 
+    // check subGrids
     public boolean checkSubGrid(int val, int row, int col) {
         int subsectionRows = row / 3;
         int subsectionCols = col / 3;

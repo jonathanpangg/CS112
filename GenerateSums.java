@@ -1,5 +1,17 @@
+/**
+ * GenerateSums.java
+ * 
+ * Implementation of a class that prints the sums 
+ * of a number, n
+ *
+ * Computer Science 112, Boston University
+ *
+ * your name: Jonathan Pang
+ *
+ */
+
 public class GenerateSums {
-    public static String generateSums(int n) {
+    public static String generateSums(int n) { // returns the sums of a number
         int sum = 0;
         String s = "";
         String copy = "";
@@ -24,9 +36,5 @@ public class GenerateSums {
         }
 
         return s;
-    }
-
-    public static void main(String [] args) {
-        System.out.println(generateSums(6));
     }
 }

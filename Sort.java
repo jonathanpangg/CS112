@@ -14,6 +14,9 @@
  * assume that the array is full.  They sort the array in place,
  * altering the original array.
  */
+
+import java.util.*; 
+
 public class Sort {
     public static final int NUM_ELEMENTS = 10;
     
@@ -69,6 +72,7 @@ public class Sort {
                 // Put the element in place.
                 arr[j] = toInsert;
             }
+            System.out.println(Arrays.toString(arr));
         }
     }
     
@@ -163,14 +167,12 @@ public class Sort {
     }
     
     /* merge - helper method for mergesort */
-    private static void merge(int[] arr, int[] temp, 
-      int leftStart, int leftEnd, int rightStart, int rightEnd)
-    {
+    private static void merge(int[] arr, int[] temp, int leftStart, int leftEnd, int rightStart, int rightEnd) {
         int i = leftStart;    // index into left subarray
         int j = rightStart;   // index into right subarray
         int k = leftStart;    // index into temp
         
-        while (i <= leftEnd && j <= rightEnd) {
+        while (i <= leftEnd && j <= rightEnd) { // puts it in order
             if (arr[i] < arr[j]) {
                 temp[k] = arr[i];
                 i++; k++;
@@ -180,16 +182,16 @@ public class Sort {
             }
         }
         
-        while (i <= leftEnd) {
+        while (i <= leftEnd) { // if any left in i, place all
             temp[k] = arr[i];
             i++; k++;
         }
-        while (j <= rightEnd) {
+        while (j <= rightEnd) { // if any left in j, place all 
             temp[k] = arr[j];
             j++; k++;
         }
         
-        for (i = leftStart; i <= rightEnd; i++) {
+        for (i = leftStart; i <= rightEnd; i++) { // copies all
             arr[i] = temp[i];
         }
     }
@@ -201,9 +203,13 @@ public class Sort {
         }
         
         int middle = (start + end)/2;
+        // {24, 3, 27, 13, 34, 2, 50, 12}
         mSort(arr, temp, start, middle);
         mSort(arr, temp, middle + 1, end);
+        
         merge(arr, temp, start, middle, middle + 1, end);
+        System.out.println(Arrays.toString(arr));
+        return;
     }
     
     /** mergesort */
@@ -226,7 +232,8 @@ public class Sort {
         System.out.println("}");
     }
     
-    public static void main(String[] arr) { 
+    public static void main(String[] args) { 
+        /*
         int[] orig = new int[NUM_ELEMENTS];
         for (int i = 0; i < NUM_ELEMENTS; i++) {
             orig[i] = (int)(50 * Math.random());
@@ -235,40 +242,42 @@ public class Sort {
         
         int[] copy = new int[NUM_ELEMENTS];
         
-        /* selection sort */
         System.arraycopy(orig, 0, copy, 0, orig.length); 
         selectionSort(copy);
         System.out.print("selection sort:\t");
         printArray(copy);
         
-        /* insertion sort */
         System.arraycopy(orig, 0, copy, 0, orig.length); 
         insertionSort(copy);
         System.out.print("insertion sort:\t");
         printArray(copy);
         
-        /* Shell sort */
         System.arraycopy(orig, 0, copy, 0, orig.length); 
         shellSort(copy);
         System.out.print("Shell sort:\t");
         printArray(copy);
         
-        /* bubble sort */
         System.arraycopy(orig, 0, copy, 0, orig.length); 
         bubbleSort(copy);
         System.out.print("bubble sort:\t");
         printArray(copy);
         
-        /* quicksort */
         System.arraycopy(orig, 0, copy, 0, orig.length); 
         quickSort(copy);
         System.out.print("quicksort:\t");
         printArray(copy);
         
-        /* mergesort */
         System.arraycopy(orig, 0, copy, 0, orig.length); 
         mergeSort(copy);
         System.out.print("mergesort:\t");
         printArray(copy);
+
+        int [] n = {10, 18, 4, 24, 33, 40, 8, 3, 12};
+        insertionSort(n);
+        */
+
+        int [] arr = {24, 3, 27, 13, 34, 2, 50, 12};
+        int [] temp = new int [8];
+        mergeSort(arr);
     }
 }

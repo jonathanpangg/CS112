@@ -28,7 +28,7 @@ public class Duplicates {
     }
 
     public static void main(String [] args) {
-        int [] arr = {2, 5, 5, 5, 5, 10, 10, 12, 12};
+        int [] arr = {2, 5, 10, 12};
         System.out.println(removeDups(arr));
     }
 }

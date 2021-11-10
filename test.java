@@ -85,6 +85,6 @@ public class test {
         // System.out.println(Arrays.toString((partition(arr, 0, arr.length - 1)))); 
         // System.out.println(Arrays.toString(merge(arr, temp, 0, arr.length / 2, arr.length / 2 + 1, arr.length)));
         
-        System.out.println(Arrays.toString(merge(arr, temp, 0, arr.length / 2, arr.length / 2 + 1, arr.length)));
+        System.out.println(m
     }
 }

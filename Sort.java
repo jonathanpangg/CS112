@@ -276,8 +276,7 @@ public class Sort {
         insertionSort(n);
         */
 
-        int [] arr = {24, 3, 27, 13, 34, 2, 50, 12};
-        int [] temp = new int [8];
+        int [] arr = {10, 18, 4, 24, 33, 40, 8, 3, 12};
         mergeSort(arr);
     }
 }

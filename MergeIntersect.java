@@ -55,6 +55,8 @@ public class MergeIntersect {
         int i = 0;
         int j = 0;
         int k = 0;
+        int prevAdded = 0;
+        boolean ifAdded = false;
 
         int end = 0;
         if (a.length > b.length) 
@@ -71,7 +73,11 @@ public class MergeIntersect {
                 j++;
             
             else {
-                c[k] = a[i];
+                if (prevAdded != a[i] || !ifAdded) {
+                    c[k] = a[i];
+                    prevAdded = c[k];
+                    ifAdded = true;
+                }
                 i++; j++; k++;
             }
         }
@@ -80,8 +86,8 @@ public class MergeIntersect {
     }
 
     public static void main(String [] args) {
-        int[] a1 = {0, 2, -4, 6, 10, 8};
-        int[] a2 = {12, 0, -4, 8};
+        int[] a1 = {-1, 0, 2, 2};
+        int[] a2 = {0, 2, 2};
         int [] c = intersect(a1, a2);
         System.out.println(Arrays.toString(a1));
         System.out.println(Arrays.toString(a2));

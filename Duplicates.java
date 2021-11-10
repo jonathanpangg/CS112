@@ -2,6 +2,9 @@ import java.util.Arrays;
 
 public class Duplicates {
     public static int removeDups(int [] arr) {
+        if (arr == null) 
+            throw new IllegalArgumentException();
+            
         int counter = 0;
 
         int i = 0;
@@ -28,7 +31,7 @@ public class Duplicates {
     }
 
     public static void main(String [] args) {
-        int [] arr = {2, 5, 10, 12};
+        int [] arr = {2, 2, 5, 5, 5, 10, 10, 12};
         System.out.println(removeDups(arr));
     }
 }

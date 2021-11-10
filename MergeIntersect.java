@@ -49,6 +49,8 @@ public class MergeIntersect {
     }
 
     public static int [] intersect(int [] a, int [] b) {
+        if (a == null || b == null) 
+            throw new IllegalArgumentException();
         mergeSort(a);
         mergeSort(b);
 
@@ -86,8 +88,8 @@ public class MergeIntersect {
     }
 
     public static void main(String [] args) {
-        int[] a1 = {-1, 0, 2, 2};
-        int[] a2 = {0, 2, 2};
+        int[] a1 = {2, 2};
+        int[] a2 = {2, 2};
         int [] c = intersect(a1, a2);
         System.out.println(Arrays.toString(a1));
         System.out.println(Arrays.toString(a2));

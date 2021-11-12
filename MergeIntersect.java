@@ -79,6 +79,7 @@ public class MergeIntersect {
                     c[k] = a[i];
                     prevAdded = c[k];
                     ifAdded = true;
+                    k--;
                 }
                 i++; j++; k++;
             }

@@ -104,7 +104,7 @@ public class PairFinder {
     }
 
     public static void main(String [] args) {
-        int [] arr = {10, 4, 7, 8, 5, 5, 15};
+        int [] arr = {10, 4, 7, 7, 8, 5, 5, 15};
         // findPairSums(12, arr);
         findPairSumsFaster(12, arr);
     }

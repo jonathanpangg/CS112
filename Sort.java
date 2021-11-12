@@ -117,6 +117,7 @@ public class Sort {
                     swap(arr, j, j+1);
                 }
             }
+            System.out.println(Arrays.toString(arr));
         }
     }
     
@@ -145,7 +146,7 @@ public class Sort {
             }
 
         } while ( i < j );
-
+        System.out.println(Arrays.toString(arr));
 	return(j);
     }
     
@@ -276,7 +277,7 @@ public class Sort {
         insertionSort(n);
         */
 
-        int [] arr = {10, 18, 4, 24, 33, 40, 8, 3, 12};
-        mergeSort(arr);
+        int [] arr = {14, 7, 27, 13, 24, 20, 10, 33};
+        quickSort(arr);
     }
 }

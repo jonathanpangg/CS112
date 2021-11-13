@@ -8,14 +8,14 @@
  */
 
 import java.util.*;
-
 /*
  * A class that implements our simple List interface using an array.
  */
 public class ArrayList implements List {
     private Object[] items;     // the items in the list
     private int length;         // # of items in the list
-    
+    private int i;
+
     /*
      * Constructs an ArrayList object with the specified maximum size
      * for a list that is initially empty.
@@ -80,6 +80,7 @@ public class ArrayList implements List {
             items[j + 1] = items[j];
         }
         
+
         items[i] = item;
         length++;
         return true;
@@ -131,20 +132,66 @@ public class ArrayList implements List {
      */
     public ListIterator iterator() {
         // still needs to be implemented
-        return null;
+        return new ArrayListIterator(i);
     }
 
+    private class ArrayListIterator implements ListIterator {
+        private int i;
+
+        public ArrayListIterator(int i) {
+            this.i = i;
+        }
+
+        public boolean hasNext() {
+            if (items[i + 1] == null) 
+                return false;
+            return true;
+        }
+        
+        public Object next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            i++;
+            return items[i];
+        }
+    }
+    
     public boolean removeAll(Object item) { // removeAll Method of ArrayList
         boolean returnVal = false;
 
-        for (int i = 0; i < this.length; i++) {
+        int i = 0;
+        int j = 1;
+        int counter = 0;
+
+        while (i < length && j < length) {
             if (getItem(i).equals(item)) {
-                removeItem(i);
-                returnVal = true;
-                i--;
+                if (!getItem(j).equals(item)) {
+                    Object temp = items[i];
+                    items[i] = items[j];
+                    items[j] = temp;
+                    i++; j++;
+                    returnVal = true;
+                }   
+                else 
+                    j++;
+            }
+            else {
+                i++;
             }
         }
+        
+        for (int k = length - 1; k >= 0; k--) {
+            if (getItem(k).equals(item))
+                counter++;
+            else 
+                break;
+        }
 
+        for (int k = 0; k < counter; k++) {
+            length--;
+        }
+    
         return returnVal;
     }
 

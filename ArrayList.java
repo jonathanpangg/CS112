@@ -11,7 +11,7 @@ import java.util.*;
 /*
  * A class that implements our simple List interface using an array.
  */
-public class ArrayList implements List {
+public class ArrayList  {
     private Object[] items;     // the items in the list
     private int length;         // # of items in the list
     private int i;
@@ -127,35 +127,7 @@ public class ArrayList implements List {
         return str;
     }
     
-    /*
-     * iterator - returns an iterator for this list
-     */
-    public ListIterator iterator() {
-        // still needs to be implemented
-        return new ArrayListIterator(i);
-    }
-
-    private class ArrayListIterator implements ListIterator {
-        private int i;
-
-        public ArrayListIterator(int i) {
-            this.i = i;
-        }
-
-        public boolean hasNext() {
-            if (items[i + 1] == null) 
-                return false;
-            return true;
-        }
-        
-        public Object next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            i++;
-            return items[i];
-        }
-    }
+    
     
     public boolean removeAll(Object item) { // removeAll Method of ArrayList
         boolean returnVal = false;
@@ -163,9 +135,11 @@ public class ArrayList implements List {
         int i = 0;
         int j = 1;
         int counter = 0;
-
+int pass = 0;
         while (i < length && j < length) {
+            pass++;
             if (getItem(i).equals(item)) {
+                pass++;
                 if (!getItem(j).equals(item)) {
                     Object temp = items[i];
                     items[i] = items[j];
@@ -180,7 +154,7 @@ public class ArrayList implements List {
                 i++;
             }
         }
-        
+        System.out.println(pass);
         for (int k = length - 1; k >= 0; k--) {
             if (getItem(k).equals(item))
                 counter++;

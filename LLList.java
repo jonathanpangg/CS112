@@ -2,9 +2,6 @@
  * LLList.java
  *
  * Computer Science 112, Boston University
- * 
- * Jonathan Pang
- * removeAll Method of LLList
  */
 
 import java.util.*;
@@ -203,36 +200,5 @@ public class LLList implements List {
             nextNode = nextNode.next;
             return item;
         }
-    }
-
-    public boolean removeAll(Object item) { // removeAll Method of LLList
-        boolean returnVal = false;
-        int counter = 0;
-        Node trav = head.next;
-        
-        while (trav != null) {
-            if (trav.item.equals(item)) {
-                
-                removeItem(counter);
-                returnVal = true;
-                counter--;
-            }
-            trav = trav.next;
-            counter++;    
-        }
-
-        return returnVal;
-    }
-
-    public static void main(String [] args) {
-        String[] letters = {"a", "b", "c", "a", "c", "d", "e", "a"};
-        LLList list1 = new LLList(letters);
-        System.out.println(list1);
-        System.out.println(list1.removeAll("a"));
-        System.out.println(list1);
-        System.out.println(list1.removeAll("c"));
-        System.out.println(list1);
-        System.out.println(list1.removeAll("x"));
-        System.out.println(list1);
     }
 }
